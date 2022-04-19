@@ -107,6 +107,7 @@ const App = React.forwardRef(({ geo, _setBackground, _startTransition, baseGeo, 
 
   function goHome() {
     setFomart(0);
+    audioList.backAudio.pause();
     musicRef.current.setClass('hideObject')
 
   }

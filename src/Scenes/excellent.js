@@ -27,7 +27,7 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
             audioList.replayAudio.play().catch(error => { });
             replayBtn.current.className = 'aniObject'
             timerList[2] = setTimeout(() => {
-                audioList.backAudio.volume = 0.12;
+                audioList.backAudio.volume = 0.1;
 
                 audioList.yeahAudio.volumn = 0.3
                 audioList.clapAudio.volumn = 0.3
@@ -52,7 +52,7 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
 
             audioList.replayAudio.pause();
 
-            audioList.backAudio.volume = 0.12;
+            audioList.backAudio.volume = 0.1;
             audioList.yeahAudio.volumn = 0.3
             audioList.clapAudio.volumn = 0.3
         }

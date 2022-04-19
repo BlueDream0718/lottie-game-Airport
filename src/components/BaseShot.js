@@ -40,7 +40,7 @@ Array.from(Array(10).keys()).map(value => {
     subAudioList.push(new loadSound('Word/' + (value + 1)))
 })
 
-backAudio.volume = 0.12;
+backAudio.volume = 0.1;
 wooAudio.volume = 0.8;
 successAudio.volume = 0.4;
 
