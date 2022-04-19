@@ -92,11 +92,25 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
             }
 
             let timeDuration = audioList.bodyAudio1.duration * 1000
-            audioList.bodyAudio1.play().catch(error=>{});
+            audioList.bodyAudio1.play().catch(error => { });
+
+            if (currentMaskNum + 2 == 6) {
+                timeDuration += audioList.bodyAudio2.duration * 1000
+                setTimeout(() => {
+                    audioList.bodyAudio2.play();
+                }, audioList.bodyAudio1.duration * 1000);
+            }
 
             setTimeout(() => {
-                if (currentMaskNum < 11)
-                    audioList.bodyAudio1.src = prePathUrl() + "sounds/Introduction/intro" + (currentMaskNum + 3) + ".mp3"
+                if (currentMaskNum < 11) {
+                    if (currentMaskNum + 3 == 6) {
+                        audioList.bodyAudio2.src = prePathUrl() + "sounds/Introduction/intro" + (currentMaskNum + 3) + "_2.mp3"
+                        audioList.bodyAudio1.src = prePathUrl() + "sounds/Introduction/intro" + (currentMaskNum + 3) + "_1.mp3"
+                    }
+                    else {
+                        audioList.bodyAudio1.src = prePathUrl() + "sounds/Introduction/intro" + (currentMaskNum + 3) + ".mp3"
+                    }
+                }
                 setTimeout(() => {
                     currentImage.current.style.transform = "scale(1)"
                     if (currentMaskNum == 11)
@@ -113,7 +127,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
                             setTimeout(() => {
                                 _startTransition(3)
                                 setTimeout(() => {
-                                    audioList.wooAudio.play().catch(error=>{});
+                                    audioList.wooAudio.play().catch(error => { });
                                     nextFunc()
                                 }, 300);
                             }, 2000);
@@ -143,7 +157,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         airOutLine.current.setStyle([{ key: 'transition', value: '0.5s' }])
 
         setTimeout(() => {
-            audioList.bodyAudio2.play().catch(error=>{})
+            audioList.bodyAudio2.play().catch(error => { })
             setTimeout(() => {
                 showIndividualImage()
             }, audioList.bodyAudio2.duration * 1000 + 2000);
