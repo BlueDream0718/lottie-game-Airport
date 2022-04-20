@@ -40,17 +40,17 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         { x: -0.62, y: -0.15, s: 3 },
         { x: -0.62, y: -0.2, s: 3.5 },
         { x: -0.75, y: 0.3, s: 2.5 },
-        { x: -1.1, y: 0.24, s: 3.5 },
+        { x: -1.15, y: 0.24, s: 3.5 },
         { x: 0.05, y: 0.1, s: 2 },
         { x: 0.6, y: 0.98, s: 3 }
     ]
 
     const leftMarginList = [
-        0.19, 0.36, 0.415, 0.525, 0.23, 0.55, 0.65, 0.61, 0.78, 0.685, 0.63, 0.367
+        0.19, 0.36, 0.415, 0.525, 0.23, 0.55, 0.65, 0.61, 0.78, 0.699, 0.63, 0.367
     ]
 
     const topMarginList = [
-        0.65, 0.65, 0.63, 0.4, 0.3, 0.49, 0.54, 0.55, 0.42, 0.44, 0.44, 0.3
+        0.65, 0.65, 0.63, 0.4, 0.3, 0.49, 0.54, 0.55, 0.42, 0.431, 0.44, 0.3
     ]
 
     function showIndividualImage() {
@@ -150,7 +150,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         audioList.bodyAudio1.src = prePathUrl() + 'sounds/Introduction/intro2.mp3';
         audioList.bodyAudio2.src = prePathUrl() + 'sounds/Introduction/intro1.mp3';
 
-        currentMaskNum = 0;
+
 
         blackWhiteObject.current.style.transition = "0.5s"
         currentImage.current.style.transition = '0.5s'
@@ -161,8 +161,11 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
             setTimeout(() => {
                 showIndividualImage()
             }, audioList.bodyAudio2.duration * 1000 + 2000);
-
         }, 3000);
+
+        return () => {
+            currentMaskNum = 0;
+        }
 
     }, [])
 

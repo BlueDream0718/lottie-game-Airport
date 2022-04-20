@@ -45,7 +45,8 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
 
         timerList[0] = setTimeout(activeBtnFunc, 4000);
 
-        audioList.commonAudio1.src = prePathUrl() + "sounds/Word/common_review.mp3"
+        audioList.bodyAudio1.src = prePathUrl() + "sounds/Word/common_review.mp3"
+        audioList.bodyAudio2.src = prePathUrl() + "sounds/common/tap_circle.mp3"
 
         imageCount = 0;
         isEffectPassed = true;
@@ -78,8 +79,11 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
             isRendered = true;
             baseObject.current.className = 'aniObject'
             timerList[1] = setTimeout(() => {
-                audioList.commonAudio1.play().catch(error=>{});
-            }, 1000);
+                audioList.bodyAudio1.play().catch(error => { });
+                timerList[2] = setTimeout(() => {
+                    audioList.bodyAudio2.play().catch(error => { })
+                }, audioList.bodyAudio1.duration * 1000 + 300);
+            }, 2000);
 
         }
     }
@@ -103,10 +107,11 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
 
 
     const showWordText = (clickedNum) => {
-        if (!clickedList.includes(clickedNum)) {
 
-            if(clickedList.length == 0) {
-                clearTimeout(timerList[1])
+        if (!clickedList.includes(clickedNum)) {
+            timerList.map(timer => clearTimeout(timer))
+            if (clickedList.length == 0) {
+
                 audioList.commonAudio1.pause();
             }
 
@@ -122,7 +127,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
             ])
 
             setTimeout(() => {
-                audioList[clickedNum].play().catch(error=>{});
+                audioList[clickedNum].play().catch(error => { });
                 aniImageList[clickedNum].current.setStyle([
                     { key: 'transform', value: 'scale(1)' },
                     { key: 'transition', value: '0.3s' }

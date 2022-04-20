@@ -18,29 +18,34 @@ const animationColorList = [
     ['#51c9b5', '#cc55d9', '#dfeb88']
 ]
 
-
 let titleAudio = new loadSound('Introduction/intro1');
-
 let clapAudio = new loadSound('clap', true);
 let backAudio = new loadSound('bMusic', true);
+
 let yeahAudio = new loadSound('yeah', true);
 let tingAudio = new loadSound('ting', true);
 let wooAudio = new loadSound('woo', true);
+
 let replayAudio = new loadSound('replayAudio', true);
 let successAudio = new loadSound('success', true);
 
 let bodyAudio1 = new loadSound('Introduction/intro1');
 let bodyAudio2 = new loadSound('Introduction/intro3');
 
-let commonAudio1 = new loadSound('Episode/Episode_13_Airport_16');
-let commonAudio2 = new loadSound('Episode/Episode_13_Common_01');
+let commonAudio1 = new loadSound('Question/common_btn');
+let commonAudio2 = new loadSound('Question/common_audio');
 
 let subAudioList = []
 Array.from(Array(10).keys()).map(value => {
     subAudioList.push(new loadSound('Word/' + (value + 1)))
 })
 
-backAudio.volume = 0.1;
+Array.from(Array(7).keys()).map(value => {
+    subAudioList.push(new loadSound('Question/question' + (value + 1)))
+    subAudioList.push(new loadSound('Question/answer' + (value + 1)))
+})
+
+backAudio.volume = 0.07;
 wooAudio.volume = 0.8;
 successAudio.volume = 0.4;
 
@@ -152,7 +157,7 @@ export default function BaseShot() {
     function setLoop(audio) {
         audio.addEventListener('ended', () => {
             audio.currentTime = 0;
-            audio.play().catch(error=>{})
+            audio.play().catch(error => { })
         },
             false)
     }
@@ -396,10 +401,6 @@ export default function BaseShot() {
                 textAlign: "center"
             }
         } >
-
-
-
-
             <div ref={imageBack}
                 style={
                     {
@@ -413,8 +414,6 @@ export default function BaseShot() {
                     ref={myImage}
                     src={prePathUrl() + "images/Background/BG_Color.png"}
                 />
-
-
             </div>
             <div ref={imageBack1}
                 style={

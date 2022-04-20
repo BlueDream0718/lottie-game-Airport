@@ -1,7 +1,7 @@
 import "../stylesheets/styles.css";
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from "../components/BaseShot"
-import {setExtraVolume} from "../components/CommonFunctions"
+import { setExtraVolume } from "../components/CommonFunctions"
 import { prePathUrl } from "../components/CommonFunctions";
 
 const timerList = [];
@@ -15,13 +15,13 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
         audioList.commonAudio1.src = prePathUrl() + "sounds/common/shaandaar.mp3"
 
         timerList[0] = setTimeout(() => {
-            audioList.commonAudio1.play().catch(error=>{});
-            
+            audioList.commonAudio1.play().catch(error => { });
+
         }, 1500);
 
         timerList[2] = setTimeout(() => {
-            audioList.clapAudio.play().catch(error=>{});
-            audioList.yeahAudio.play().catch(error=>{});
+            audioList.clapAudio.play().catch(error => { });
+            audioList.yeahAudio.play().catch(error => { });
         }, 3000);
 
         timerList[1] = setTimeout(() => {
@@ -44,7 +44,7 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
 
     return (
         <div>
-            < div className="excellentText" style={{
+            < div className="aniObject" style={{
                 position: "fixed",
                 width: _baseGeo.width * 1 + "px",
                 height: _baseGeo.height + 'px',

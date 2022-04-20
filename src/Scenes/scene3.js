@@ -23,14 +23,14 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
     const aniImageList = Array.from({ length: 4 }, ref => useRef())
 
     useEffect(() => {
-        audioList.bodyAudio1.src = prePathUrl() + 'sounds/Question/question1.mp3'
-        audioList.bodyAudio2.src = prePathUrl() + 'sounds/Question/answer1.mp3'
+        // audioList.bodyAudio1.src = prePathUrl() + 'sounds/Question/question1.mp3'
+        // audioList.bodyAudio2.src = prePathUrl() + 'sounds/Question/answer1.mp3'
 
-        audioList.commonAudio1.src = prePathUrl() + 'sounds/Question/common_btn.mp3'
-        audioList.commonAudio2.src = prePathUrl() + 'sounds/Episode/common_audio.mp3'
+        // audioList.commonAudio1.src = prePathUrl() + 'sounds/Question/common_btn.mp3'
+        // audioList.commonAudio2.src = prePathUrl() + 'sounds/Episode/common_audio.mp3'
 
-        setExtraVolume(audioList.commonAudio1, 3.5)
-        setExtraVolume(audioList.commonAudio2, 3.5)
+        // setExtraVolume(audioList.commonAudio1, 3.5)
+        // setExtraVolume(audioList.commonAudio2, 3.5)
 
         currentMaskNum = 0;
         // blackWhiteObject.current.style.transition = "0.5s"
@@ -42,12 +42,11 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         buttonRefs.current.className = 'hideObject'
 
         setTimeout(() => {
-            audioList.commonAudio1.play().catch(error=>{});
+            audioList.commonAudio1.play().catch(error => { });
             setTimeout(() => {
                 playZoomAnimation();
             }, audioList.commonAudio1.duration * 1000 + 3000);
         }, 3000);
-
     }, [])
 
     const playZoomAnimation = () => {
@@ -77,17 +76,17 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         })
 
         if (stepCount == 0) {
-            audioList.commonAudio2.play().catch(error=>{});
+            audioList.commonAudio2.play().catch(error => { });
             timerList[0] = setTimeout(() => {
                 timerList[3] = setTimeout(() => {
-                    audioList.bodyAudio1.play().catch(error=>{});
+                    audioList[10 + stepCount * 2].play().catch(error => { });
                 }, 1000);
             }, audioList.commonAudio2.duration * 1000);
         }
 
         else {
             timerList[3] = setTimeout(() => {
-                audioList.bodyAudio1.play().catch(error=>{});
+                audioList[10 + stepCount * 2].play().catch(error => { });
             }, 1000);
         }
 
@@ -112,25 +111,28 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
         //play answer..
 
         clearTimeout(timerList[3])
-        audioList.bodyAudio1.pause();
+        audioList[10 + stepCount * 2].pause()
+        // audioList.bodyAudio1.pause();
         if (stepCount == 0) {
             clearInterval(timerList[0])
             audioList.commonAudio2.pause();
 
         }
 
-        if (stepCount < 6)
-            audioList.bodyAudio1.src = prePathUrl() + "sounds/Question/question" + (stepCount + 2) + ".mp3"
-        audioList.bodyAudio2.play().catch(error=>{});
+        // if (stepCount < 6)
+        //     audioList.bodyAudio1.src = prePathUrl() + "sounds/Question/question" + (stepCount + 2) + ".mp3"
+        audioList[10 + stepCount * 2 + 1].play()
+        // audioList.bodyAudio2.play().catch(error => { });
         buttonRefs.current.style.pointerEvents = 'none'
 
         setTimeout(() => {
-            audioList.successAudio.play().catch(error=>{})
+            audioList.successAudio.play().catch(error => { })
             starRefs[stepCount].current.setClass('show')
             stepCount++
-            if (stepCount < 7)
-                audioList.bodyAudio2.src = prePathUrl() + "sounds/Question/answer" + (stepCount + 1) + ".mp3"
 
+            // if (stepCount < 7)
+            //     audioList.bodyAudio2.src =
+            //         prePathUrl() + "sounds/Question/answer" + (stepCount + 1) + ".mp3"
 
             setTimeout(() => {
                 audioList.successAudio.pause();
@@ -250,18 +252,27 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
             <div ref={buttonRefs}>
                 <div
                     className='commonButton'
+                    onClick={clickAnswer}
                     style={{
-                        position: "fixed", width: _geo.width * 0.08 + "px",
-                        height: _geo.width * 0.08 + "px",
-                        left: _geo.left + _geo.width * 0.46
-                        , top: _geo.top + _geo.height * 0.75
+                        position: "fixed", width: _geo.width * 0.1 + "px",
+                        height: _geo.width * 0.1 + "px",
+                        left: _geo.left + _geo.width * 0.45
+                        , top: _geo.top + _geo.height * 0.72
                         , cursor: "pointer",
+                        borderRadius: '50%',
+                        overflow: 'hidden',
+
                     }}>
                     <img
-                        onClick={clickAnswer}
-                        width={"100%"}
+
+                        width={"370%"}
+                        style={{
+                            position: 'absolute',
+                            left: '-230%',
+                            top: '-32%'
+                        }}
                         draggable={false}
-                        src={prePathUrl() + 'images/Buttons/Audio.svg'}
+                        src={prePathUrl() + 'images/Buttons/Answer_Button.svg'}
                     />
                 </div>
             </div>

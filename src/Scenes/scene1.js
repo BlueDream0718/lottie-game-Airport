@@ -33,10 +33,10 @@ const Scene1 = React.forwardRef(({ nextFunc, _geo, _startTransition }, ref) => {
             }
             _startTransition(2)
             setTimeout(() => {
-                audioList.wooAudio.play().catch(error=>{});
-                nextFunc();    
+                audioList.wooAudio.play().catch(error => { });
+                nextFunc();
             }, 300);
-            
+
         }, 200);
 
     }
@@ -97,18 +97,42 @@ const Scene1 = React.forwardRef(({ nextFunc, _geo, _startTransition }, ref) => {
                 <div
                     ref={titleRef}
                     className="hideObject"
-                    style={{
-                        position: "fixed", width: _geo.width + "px",
-                        left: _geo.left + "px"
-                        , top: _geo.height * -0.1 + _geo.top + "px"
-                    }}>
-                    <img
-                        onLoad={imageLoad}
-                        draggable={false}
-                        width={"100%"}
-                        src={prePathUrl() + 'images/Background/Title.png'}
-                    />
+                >
+                    <div
+                        style={{
+                            position: "fixed", width: _geo.width + "px",
+                            left: _geo.left + "px"
+                            , top: _geo.height * -0.1 + _geo.top + "px",
+                            height: _geo.height * 0.65 + "px",
+                            overflow: 'hidden'
+
+                        }}>
+                        <img
+                            onLoad={imageLoad}
+                            draggable={false}
+                            width={"100%"}
+                            src={prePathUrl() + 'images/Background/Title.png'}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            position: "fixed", width: _geo.width * 0.25 + "px",
+                            left: _geo.left + _geo.width * 0.4 + "px"
+                            , top: _geo.height * 0.57 + _geo.top + "px",
+                            height: _geo.height * 0.65 + "px",
+                            overflow: 'hidden'
+
+                        }}>
+                        <img
+                            onLoad={imageLoad}
+                            draggable={false}
+                            width={"100%"}
+                            src={prePathUrl() + 'images/Background/SB13-HawaiAdda-Text.png'}
+                        />
+                    </div>
+
                 </div>
+
                 <div
                     className="hideObject"
                     ref={playBtnRef}
