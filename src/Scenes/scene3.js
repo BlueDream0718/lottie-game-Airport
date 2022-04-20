@@ -121,7 +121,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
 
         // if (stepCount < 6)
         //     audioList.bodyAudio1.src = prePathUrl() + "sounds/Question/question" + (stepCount + 2) + ".mp3"
-        audioList[10 + stepCount * 2 + 1].play()
+        audioList[11 + stepCount * 2].play()
         // audioList.bodyAudio2.play().catch(error => { });
         buttonRefs.current.style.pointerEvents = 'none'
 
@@ -149,7 +149,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
                 }
             }, 4000);
 
-        }, audioList.bodyAudio2.duration * 1000);
+        }, audioList[11 + stepCount * 2].duration * 1000);
     }
     return (
         <div ref={baseObject}

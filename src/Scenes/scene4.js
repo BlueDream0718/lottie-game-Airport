@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useContext } from 'react';
 import "../stylesheets/styles.css";
 import BaseImage from '../components/BaseImage';
 import { UserContext } from '../components/BaseShot';
-import { prePathUrl } from "../components/CommonFunctions";
+import { prePathUrl, setExtraVolume } from "../components/CommonFunctions";
 
 const loadCount = 7
 
@@ -48,6 +48,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
         audioList.bodyAudio1.src = prePathUrl() + "sounds/Word/common_review.mp3"
         audioList.bodyAudio2.src = prePathUrl() + "sounds/common/tap_circle.mp3"
 
+        audioList[6].volume = 0.35
         imageCount = 0;
         isEffectPassed = true;
 

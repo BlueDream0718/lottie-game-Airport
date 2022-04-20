@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useContext } from 'react';
 import "../stylesheets/styles.css";
 import BaseImage from '../components/BaseImage';
 import { UserContext } from '../components/BaseShot';
-import { prePathUrl } from "../components/CommonFunctions";
+import { prePathUrl, setExtraVolume } from "../components/CommonFunctions";
 
 let currentMaskNum = 0;
 const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition }, ref) => {
@@ -80,7 +80,9 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
                     - 0.04 * topMarginList[currentMaskNum]) / 2 + "px)"
                 + "scale(1.04) "
 
+
             if (currentMaskNum == 11) {
+                audioList.bodyAudio1.volume = 0.35
                 airOutLine.current.setStyle([
                     {
                         key: 'transform',
@@ -165,6 +167,7 @@ const Scene1 = React.forwardRef(({ nextFunc, _baseGeo, _geo, _startTransition },
 
         return () => {
             currentMaskNum = 0;
+            audioList.bodyAudio1.volume = 1
         }
 
     }, [])
